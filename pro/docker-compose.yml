@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  web_migrations:
+    build: .
+    command: ./manage.py migrate
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: Market
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Ilialohhhh1.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:

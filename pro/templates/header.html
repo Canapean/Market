@@ -1,0 +1,45 @@
+<header class="mt-3">
+  <div class="px-3 py-2 text-bg-dark" style="border-radius: 10px 10px 0 0;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          <li>
+            <a href="{% url 'home' %}" class="nav-link text-secondary">
+              Главная
+            </a>
+          </li>
+          <li>
+            <button class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Обратная связь
+            </button>
+          </li>
+          <li>
+            <a href="{% url 'products_create' %}" class="nav-link text-white">
+              Выставить товар
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="px-3 py-2 bg-light mb-3" style="border-radius: 0 0 10px 10px;">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto " role="search" method="get">
+        <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search" name="q" value="{{ search_query }}">
+        <button type="submit" class="btn btn-primary">Поиск</button>
+      </form>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'profile_detail' request.user.profile.id %}" type="button" class="btn btn-secondary me-2"> {{ request.user.username }}</a>
+      <form action="{% url 'logout' %}" method="post">
+         {% csrf_token %}
+        <input type="submit" formmethod="post" name="logout" id="logout" value="Выйти из аккаунта" class="btn btn-primary" onclick="window.location='{% url 'logout' %}'">
+      </form>
+      {% else %}
+      <div class="text-end">
+        <a href="{% url 'login' %}" type="button" class="btn btn-light text-dark me-2">Авторизация</a>
+        <a href="{% url 'register' %}" type="button" class="btn btn-primary">Регистрация</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

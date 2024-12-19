@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% load mptt_tags %}
+{% block content %}
+<div class="card mb-3">
+	<div class="row">
+		<div class="col-15">
+			<img src="{{ product.thumbnail.url }}" class="card-img-top" alt="{{ product.title }}" />
+		</div>
+		<div class="col-8">
+			<div class="text-end">
+            	<a href="#" type="button" class="btn btn-secondary">В корзину</a>
+            	<a href="#" type="button" class="btn btn-primary">Купить сейчас</a>
+            </div>
+			<div class="card-body">
+				<h1>{{ product.title }}</h1>
+				<div class="card-body">
+					<p class="card-text">{{ product.description }}</p>
+				</div>
+				<p class="card-text">Цена: {{ product.price }}</p>
+				Категория: <a href="{% url 'products_by_category' product.category.id %}">{{ product.category.title }}</a> / Продавец: {{ product.seller.username }} / <small>{{ product.time_create }}</small>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}  
