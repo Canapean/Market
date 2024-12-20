@@ -40,7 +40,7 @@ Docker-развертывание:
 
 2. Клонируйте репозиторий
 
-#### git clone <URL вашего репозитория></br>
+#### git clone https://github.com/Canapean/Market.git </br>
 
 #### cd pro/
 3. Постройте и запустите контейнер
